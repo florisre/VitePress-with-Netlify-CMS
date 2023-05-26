@@ -1,6 +1,6 @@
 module.exports = {
-	title: 'VitePress template',
-	description: 'A JAMstack website template with the VitePress and Netlify CMS config.',
+	title: 'StuRa',
+	description: 'Willkommen auf der offiziellen Seite Deiner Studierendenvertretung ',
 	themeConfig: {
 		repo: 'florisre/VitePress-with-Netlify-CMS',
 		docsDir: 'docs',
