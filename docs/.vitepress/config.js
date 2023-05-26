@@ -22,7 +22,7 @@ module.exports = {
                 link: "https://www.instagram.com/sturaunifreiburg/",
             }
 		],
-	}
+	},
     vue: {
         import { glob } from "glob";
         let protokollFiles = glob
