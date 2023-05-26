@@ -1,3 +1,13 @@
+import { glob } from "glob";
+
+let protokollFiles = glob
+  .sync("docs/protokolle/**/*.md")
+  .map((f) => f.replace("docs", "").replace("index.md", ""));
+
+import { description } from "../../package.json";
+
+const __dirname = getDirname(import.meta.url);
+
 module.exports = {
 	title: 'StuRa',
 	description: 'Willkommen auf der offiziellen Seite Deiner Studierendenvertretung ',
