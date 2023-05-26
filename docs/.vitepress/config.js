@@ -15,12 +15,23 @@ module.exports = {
             },
             {
                 text: "Protokolle",
-                link: "/protokolle/",
+                link: "/protokolle",
             },
             {
                 text: "Instagram",
                 link: "https://www.instagram.com/sturaunifreiburg/",
             }
 		],
+        sidebar: {
+        // This sidebar gets displayed when a user
+        // is on `guide` directory.
+        '/protokolle': [
+        {
+          text: 'Protkolle',
+          items: [
+            import { data } from './protokolle.data.js'
+          ]
+        }
+      ],
 	}
 }
