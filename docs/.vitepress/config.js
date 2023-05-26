@@ -8,9 +8,19 @@ module.exports = {
 		editLinkText: 'Edit this page on GitHub',
 		lastUpdated: 'Last Updated',
 		nav: [
-			{ text: 'Home', link: '/' },
-			{ text: 'Guide', link: '/guide/' },
-			{ text: 'GitHub', link: 'https://github.com/tsutoringo/VitePress-with-Netlify-CMS' }
+			{
+            text: "Sitzungen",
+                // notice the trailing / (for the automatic next and prev links based on the sidebar)
+                link: "/sitzungen/",
+            },
+            {
+                text: "Protokolle",
+                link: "/protokolle/",
+            },
+            {
+                text: "Instagram",
+                link: "https://www.instagram.com/sturaunifreiburg/",
+            }
 		],
 	}
 }
