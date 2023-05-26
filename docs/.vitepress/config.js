@@ -23,4 +23,12 @@ module.exports = {
             }
 		],
 	}
+    vue: {
+        import { glob } from "glob";
+        let protokollFiles = glob
+          .sync("docs/protokolle/**/*.md")
+          .map((f) => f.replace("docs", "").replace("index.md", ""));
+
+        import { description } from "../../package.json";
+    }
 }
