@@ -5,10 +5,15 @@ function getProtokollFiles() {
   const protokollDir = path.join(__dirname, "..", "protokolle");
   if (fs.existsSync(protokollDir)) {
     const files = fs.readdirSync(protokollDir);
-    return files.map((file) => path.join("/protokolle", file));
+    return files.map((file) => {
+      const filePath = path.join(protokollDir, file);
+      const relativePath = path.relative(__dirname, filePath);
+      return `/${relativePath}`;
+    });
   }
   return [];
 }
+
 
 module.exports = {
   lang: "en-US",
