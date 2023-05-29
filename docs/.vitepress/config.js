@@ -2,9 +2,12 @@ const fs = require("fs");
 const path = require("path");
 
 function getProtokollFiles() {
-  const protokollDir = path.join(__dirname, "docs", "protokolle");
-  const files = fs.readdirSync(protokollDir);
-  return files.map((file) => path.join("/protokolle", file));
+  const protokollDir = path.join(__dirname, "..", "protokolle");
+  if (fs.existsSync(protokollDir)) {
+    const files = fs.readdirSync(protokollDir);
+    return files.map((file) => path.join("/protokolle", file));
+  }
+  return [];
 }
 
 module.exports = {
