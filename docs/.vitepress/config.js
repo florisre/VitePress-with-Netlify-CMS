@@ -1,50 +1,56 @@
-const fs = require("fs");
-const path = require("path");
+import { resolve } from 'path';
+import { fs } from 'fs';
+import glob from 'glob';
 
-function getProtokollFiles() {
-  const protokollDir = path.join(__dirname, "..", "protokolle");
-  if (fs.existsSync(protokollDir)) {
-    const files = fs.readdirSync(protokollDir);
-    return files.map((file) => {
-      const filePath = path.join(protokollDir, file);
-      const relativePath = path.relative(__dirname, filePath);
-      return `/${relativePath}`;
-    });
-  }
-  return [];
-}
+const protokollFiles = glob
+  .sync('protokolle/**/*.md', { cwd: __dirname })
+  .map((f) => f.replace('.md', ''));
 
-
-module.exports = {
-  lang: "en-US",
-  title: "StuRa",
-  description: "Willkommen auf der offiziellen Seite Deiner Studierendenvertretung",
+export default {
+  lang: 'de-DE',
+  title: 'StuRa',
+  description: 'Replace with your description',
+  head: [
+    [
+      'script',
+      {
+        src: 'https://identity.netlify.com/v1/netlify-identity-widget.js',
+      },
+    ],
+  ],
   themeConfig: {
-    repo: "florisre/VitePress-with-Netlify-CMS",
-    docsDir: "docs",
-    editLinks: true,
-    editLinkText: "Edit this page on GitHub",
-    lastUpdated: "Last Updated",
-    nav: [
+    logo: '/LogoSchwarz.png',
+    notFound: [
+      'There\'s nothing here. If you\'re looking for DecapCMS, manually enter `/admin` to the root site path to navigate directly to it.',
+    ],
+    navbar: [
       {
-        text: "Sitzungen",
-        link: "/sitzungen/",
+        text: 'Sitzungen',
+        link: '/sitzungen/',
       },
       {
-        text: "Protokolle",
-        link: "/protokolle/",
+        text: 'Protokolle',
+        link: '/protokolle/',
       },
       {
-        text: "Instagram",
-        link: "https://www.instagram.com/sturaunifreiburg/",
+        text: 'Instagram',
+        link: 'https://www.instagram.com/sturaunifreiburg/',
       },
     ],
-    sidebar: [
-      {
-        text: "Protokolle",
-        children: getProtokollFiles(),
-      },
-    ],
+    sidebar: {
+      '/protokolle/': [
+        {
+          text: 'Protokolle',
+          children: protokollFiles,
+        },
+      ],
+    },
+  },
+  extendsMarkdown: (md) => {
+    md.use(require('markdown-it-attrs'));
+  },
+  alias: {
+    '@theme/HomeFooter.vue': resolve(__dirname, '../components/MyHomeFooter.vue'),
   },
 };
 
