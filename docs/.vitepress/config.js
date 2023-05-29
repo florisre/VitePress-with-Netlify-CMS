@@ -1,39 +1,55 @@
-module.exports = {
-	title: 'StuRa',
-	description: 'Willkommen auf der offiziellen Seite Deiner Studierendenvertretung ',
-	themeConfig: {
-		repo: 'florisre/VitePress-with-Netlify-CMS',
-		docsDir: 'docs',
-		editLinks: true,
-		editLinkText: 'Edit this page on GitHub',
-		lastUpdated: 'Last Updated',
-		nav: [
-			{
-            text: "Sitzungen",
-                // notice the trailing / (for the automatic next and prev links based on the sidebar)
-                link: "/sitzungen/",
-            },
-            {
-                text: "Protokolle",
-                link: "/protokolle/",
-            },
-            {
-                text: "Instagram",
-                link: "https://www.instagram.com/sturaunifreiburg/",
-            }
-		],
-        sidebar: './Sidebar.vue',
-        alias: {
-            '@protokolle': './protokolle', // Alias for the protokolle directory
-        },
+const fs = require('fs');
+const path = require('path');
 
-        configureWebpack: {
-            resolve: {
-                alias: {
-                    '@protokolle': './protokolle', // Alias for the protokolle directory (required for Vue component resolution)
-                },
-            },
-        },
-	},
-    
+module.exports = {
+  title: 'StuRa',
+  description: 'Willkommen auf der offiziellen Seite Deiner Studierendenvertretung',
+  themeConfig: {
+    repo: 'florisre/VitePress-with-Netlify-CMS',
+    docsDir: 'docs',
+    editLinks: true,
+    editLinkText: 'Edit this page on GitHub',
+    lastUpdated: 'Last Updated',
+    nav: [
+      {
+        text: 'Sitzungen',
+        link: '/sitzungen/',
+      },
+      {
+        text: 'Protokolle',
+        link: '/protokolle/',
+      },
+      {
+        text: 'Instagram',
+        link: 'https://www.instagram.com/sturaunifreiburg/',
+      },
+    ],
+    sidebar: getProtokolleSidebar(),
+  },
+};
+
+function getProtokolleSidebar() {
+  const basePath = path.resolve(__dirname, './protokolle');
+  const sidebar = [];
+
+  const subdirectories = fs.readdirSync(basePath, { withFileTypes: true })
+    .filter((dirent) => dirent.isDirectory())
+    .map((dirent) => dirent.name);
+
+  subdirectories.forEach((subdirectory) => {
+    const subdirectoryPath = path.join(basePath, subdirectory);
+    const files = fs.readdirSync(subdirectoryPath)
+      .filter((file) => file.endsWith('.md'))
+      .map((file) => path.join(subdirectory, file));
+
+    if (files.length > 0) {
+      sidebar.push({
+        text: subdirectory,
+        children: files,
+      });
+    }
+  });
+
+  return sidebar;
 }
+
