@@ -6,7 +6,7 @@
   "dependencies": {},
   "devDependencies": {
     "vitepress": "^0.20.0",
-    "@vuepress/cli": "^1.8.0"
+    "@vuepress/cli": "latest"
   },
   "scripts": {
     "docs:dev": "vitepress dev docs",
