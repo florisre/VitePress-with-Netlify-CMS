@@ -29,7 +29,7 @@ module.exports = {
 };
 
 function getProtokolleSidebar() {
-  const basePath = '../protokolle';
+  const basePath = path.resolve(__dirname, '../protokolle');
   const sidebar = [];
 
   const subdirectories = fs.readdirSync(basePath, { withFileTypes: true })
