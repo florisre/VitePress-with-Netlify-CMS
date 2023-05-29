@@ -29,17 +29,17 @@ module.exports = {
 };
 
 function getProtokolleSidebar() {
-  const basePath = path.resolve(__dirname, '../protokolle');
+  const basePath = '/protokolle';
   const sidebar = [];
 
-  const subdirectories = fs.readdirSync(basePath)
-    .filter((file) => fs.statSync(path.join(basePath, file)).isDirectory());
+  const subdirectories = fs.readdirSync(path.resolve(__dirname, `.${basePath}`))
+    .filter((file) => fs.statSync(path.join(__dirname, `.${basePath}`, file)).isDirectory());
 
   subdirectories.forEach((subdirectory) => {
     const subdirectoryPath = path.join(basePath, subdirectory);
-    const files = fs.readdirSync(subdirectoryPath)
+    const files = fs.readdirSync(path.resolve(__dirname, `.${subdirectoryPath}`))
       .filter((file) => file.endsWith('.md'))
-      .map((file) => `/protokolle/${subdirectory}/${file}`);
+      .map((file) => `${subdirectoryPath}/${file}`);
 
     if (files.length > 0) {
       sidebar.push({
