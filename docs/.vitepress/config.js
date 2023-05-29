@@ -32,15 +32,14 @@ function getProtokolleSidebar() {
   const basePath = path.resolve(__dirname, '../protokolle');
   const sidebar = [];
 
-  const subdirectories = fs.readdirSync(basePath, { withFileTypes: true })
-    .filter((dirent) => dirent.isDirectory())
-    .map((dirent) => dirent.name);
+  const subdirectories = fs.readdirSync(basePath)
+    .filter((file) => fs.statSync(path.join(basePath, file)).isDirectory());
 
   subdirectories.forEach((subdirectory) => {
     const subdirectoryPath = path.join(basePath, subdirectory);
     const files = fs.readdirSync(subdirectoryPath)
       .filter((file) => file.endsWith('.md'))
-      .map((file) => path.join('/protokolle', subdirectory, file));
+      .map((file) => `/protokolle/${subdirectory}/${file}`);
 
     if (files.length > 0) {
       sidebar.push({
@@ -52,4 +51,5 @@ function getProtokolleSidebar() {
 
   return sidebar;
 }
+
 
