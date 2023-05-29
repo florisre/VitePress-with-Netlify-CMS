@@ -1,11 +1,10 @@
-const { defineUserConfig } = require("@vuepress/cli");
 const { path, glob } = require("@vuepress/utils");
 
 let protokollFiles = glob
   .sync("docs/protokolle/**/*.md")
   .map((f) => f.replace("docs", "").replace("index.md", ""));
 
-const config = defineUserConfig({
+module.exports = {
   lang: "en-US",
   title: "StuRa",
   description: "Willkommen auf der offiziellen Seite Deiner Studierendenvertretung",
@@ -36,7 +35,5 @@ const config = defineUserConfig({
       },
     ],
   },
-});
-
-module.exports = config;
+};
 
