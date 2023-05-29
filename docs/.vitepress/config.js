@@ -29,7 +29,7 @@ module.exports = {
 };
 
 function getProtokolleSidebar() {
-  const basePath = '/protokolle';
+  const basePath = '/docs/protokolle'; // Update the base path to '/docs/protokolle'
   const sidebar = [];
 
   const subdirectories = fs.readdirSync(path.resolve(__dirname, `.${basePath}`))
@@ -51,5 +51,4 @@ function getProtokolleSidebar() {
 
   return sidebar;
 }
-
 
