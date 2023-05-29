@@ -22,6 +22,18 @@ module.exports = {
                 link: "https://www.instagram.com/sturaunifreiburg/",
             }
 		],
-        sidebar: '/.vitepress/Sidebar.vue',
-	}
+        sidebar: './Sidebar.vue',
+        alias: {
+            '@protokolle': './protokolle', // Alias for the protokolle directory
+        },
+
+        configureWebpack: {
+            resolve: {
+                alias: {
+                    '@protokolle': './protokolle', // Alias for the protokolle directory (required for Vue component resolution)
+                },
+            },
+        },
+	},
+    
 }
