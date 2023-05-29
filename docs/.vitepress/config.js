@@ -1,14 +1,11 @@
 import { resolve } from 'path';
 import { fileURLToPath } from 'url';
-import { fs } from 'fs';
 import glob from 'glob';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = resolve(__filename, '../');
 
-const protokollFiles = glob
-  .sync('protokolle/**/*.md', { cwd: __dirname })
-  .map((f) => f.replace('.md', ''));
+const protokollFiles = glob.sync('protokolle/**/*.md', { cwd: __dirname }).map((f) => f.replace('.md', ''));
 
 export default {
   lang: 'de-DE',
@@ -55,6 +52,6 @@ export default {
   },
   alias: {
     '@theme/HomeFooter.vue': resolve(__dirname, '../components/MyHomeFooter.vue'),
-  }
+  },
 };
 
