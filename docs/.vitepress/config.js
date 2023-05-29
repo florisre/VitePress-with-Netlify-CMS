@@ -1,8 +1,11 @@
-const { path, glob } = require("@vuepress/utils");
+const fs = require("fs");
+const path = require("path");
 
-let protokollFiles = glob
-  .sync(path.resolve(__dirname, "docs/protokolle/**/*.md"))
-  .map((f) => f.replace("docs", "").replace("index.md", ""));
+function getProtokollFiles() {
+  const protokollDir = path.join(__dirname, "docs", "protokolle");
+  const files = fs.readdirSync(protokollDir);
+  return files.map((file) => path.join("/protokolle", file));
+}
 
 module.exports = {
   lang: "en-US",
@@ -31,7 +34,7 @@ module.exports = {
     sidebar: [
       {
         text: "Protokolle",
-        children: protokollFiles,
+        children: getProtokollFiles(),
       },
     ],
   },
