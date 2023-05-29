@@ -15,7 +15,7 @@ module.exports = {
             },
             {
                 text: "Protokolle",
-                link: "/protokolle",
+                link: "/protokolle/",
             },
             {
                 text: "Instagram",
