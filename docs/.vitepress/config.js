@@ -1,5 +1,3 @@
-import Sidebar from './src/Sidebar.vue';
-
 module.exports = {
 	title: 'StuRa',
 	description: 'Willkommen auf der offiziellen Seite Deiner Studierendenvertretung ',
@@ -24,6 +22,6 @@ module.exports = {
                 link: "https://www.instagram.com/sturaunifreiburg/",
             }
 		],
-        sidebar: Sidebar,
+        sidebar: '/.vitepress/Sidebar.vue',
 	}
 }
