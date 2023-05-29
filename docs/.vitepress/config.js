@@ -1,7 +1,7 @@
 const { path, glob } = require("@vuepress/utils");
 
 let protokollFiles = glob
-  .sync("docs/protokolle/**/*.md")
+  .sync(path.resolve(__dirname, "docs/protokolle/**/*.md"))
   .map((f) => f.replace("docs", "").replace("index.md", ""));
 
 module.exports = {
